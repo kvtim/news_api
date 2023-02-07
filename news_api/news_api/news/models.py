@@ -15,11 +15,11 @@ class Country(models.Model):
 
 
 class News(models.Model):
-    title = models.CharField(max_length=400, verbose_name='Title')
+    title = models.CharField(max_length=1000, verbose_name='Title')
     description = models.TextField(verbose_name='Description')
     content = models.TextField(verbose_name='Content')
-    source_url = models.CharField(max_length=400, verbose_name='Source url')
-    image_url = models.CharField(blank=True, max_length=400, verbose_name='Image url')
+    source_url = models.CharField(max_length=1000, verbose_name='Source url')
+    image_url = models.CharField(blank=True, max_length=1000, verbose_name='Image url')
     published_at = models.DateTimeField(verbose_name='Published time')
 
     country = models.ForeignKey(

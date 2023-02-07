@@ -7,6 +7,7 @@ router.register(r'news', views.NewsViewSet)
 router.register(r'countries', views.CountriesViewSet)
 
 urlpatterns = [
+    path('add_data/', views.scrap_news),
     path('', include(router.urls)),
     re_path(r'^auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),

@@ -1,8 +1,13 @@
+import os
+
+from rest_framework.decorators import action, api_view, schema, permission_classes
 from rest_framework.pagination import LimitOffsetPagination, PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from rest_framework import generics, status
 from rest_framework.response import Response
+from .news_scraper.countries_scraper.countries import add_countries
+from .news_scraper.news_scraper.get_headlines_by_requests import add_news
 
 from .models import News, Country
 from .serializers import NewsSerializer, CountrySerializer
@@ -40,3 +45,12 @@ class CountriesViewSet(viewsets.ModelViewSet):
     serializer_class = CountrySerializer
 
     permission_classes = [IsAdminUser]
+
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def scrap_news(request):
+    add_countries()
+    add_news()
+    return Response({'message': 'Success!'})
+
